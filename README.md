@@ -1,5 +1,5 @@
 # distance-calculator
-This Spring Boot-driven app takes a list of customer GPS locations as input and returns the names and user ids of customers within 100km of a given GPS location. Great-circle distance is used to determine the distance between two points.
+This Spring Boot-driven app takes a list of customer GPS locations as input and returns the names and user ids of customers within 100km of a given GPS location. [Great-circle distance](https://en.wikipedia.org/wiki/Great-circle_distance) is used to determine the distance between two points.
 
 The central angle is calculated using the below forumla: 
 

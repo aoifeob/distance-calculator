@@ -10,21 +10,23 @@ public class DistanceCalculationService {
   public static final double ORIGIN_LATITUDE = 53.339428; //Latitude of our origin point for comparison
   public static final double ORIGIN_LONGITUDE = -6.257664; //Longitude of our origin point for comparison
 
-  public boolean isWithinDistanceLimit(double customerLatitude, double customerLongitude) {
-    return getArcLength(getCentralAngle(convertDegreesToRadians(customerLatitude),
-        convertDegreesToRadians(customerLongitude))) <= DISTANCE_LIMIT;
+  public boolean isWithinDistanceLimit(double customerLatitudeDegrees,
+      double customerLongitudeDegrees) {
+    return getArcLength(getCentralAngle(convertDegreesToRadians(customerLatitudeDegrees),
+        convertDegreesToRadians(customerLongitudeDegrees))) <= DISTANCE_LIMIT;
   }
 
   private double convertDegreesToRadians(double degrees) {
     return degrees * Math.PI / 180;
   }
 
-  private double getCentralAngle(double customerLatitude, double customerLongitude) {
+  private double getCentralAngle(double customerLatitudeRadians, double customerLongitudeRadians) {
     return Math.acos(
-        (Math.sin(convertDegreesToRadians(ORIGIN_LATITUDE)) * Math.sin(customerLatitude)) + (
+        (Math.sin(convertDegreesToRadians(ORIGIN_LATITUDE)) * Math.sin(customerLatitudeRadians)) + (
             Math.cos(convertDegreesToRadians(ORIGIN_LATITUDE)) * Math
-                .cos(customerLatitude) * Math
-                .cos(Math.abs(convertDegreesToRadians(ORIGIN_LONGITUDE) - customerLongitude))));
+                .cos(customerLatitudeRadians) * Math
+                .cos(Math.abs(
+                    convertDegreesToRadians(ORIGIN_LONGITUDE) - customerLongitudeRadians))));
   }
 
   private double getArcLength(double centralAngle) {

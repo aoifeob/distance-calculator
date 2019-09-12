@@ -33,4 +33,11 @@ public class JSONTransformerServiceTest {
     assertNull(customer);
   }
 
+  @Test
+  public void convertJsonToCustomerWhereNameIsNull() {
+    Customer customer = jsonTransformerService.convertJsonToCustomer(
+        "{\"latitude\": \"52.833502\", \"user_id\": 25, \"name\": null, \"longitude\": \"-8.522366\"}");
+    assertNull(customer);
+  }
+
 }

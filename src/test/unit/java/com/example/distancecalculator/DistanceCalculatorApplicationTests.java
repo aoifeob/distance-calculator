@@ -21,8 +21,4 @@ public class DistanceCalculatorApplicationTests {
     runner.run("src/test/resources/test.data");
   }
 
-  @Test
-  public void contextLoads() {
-  }
-
 }

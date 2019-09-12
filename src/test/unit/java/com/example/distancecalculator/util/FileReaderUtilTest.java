@@ -33,4 +33,9 @@ public class FileReaderUtilTest {
     List<String> expectedOutput = Collections.emptyList();
     assertEquals("", expectedOutput, fileReaderUtil.readFile("nonexistentfile.data"));
   }
+
+  @Test(expected = NullPointerException.class)
+  public void testFileReaderNullFilePath() {
+    fileReaderUtil.readFile(null);
+  }
 }

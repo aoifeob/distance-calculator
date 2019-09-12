@@ -4,7 +4,6 @@ import com.example.distancecalculator.model.Customer;
 import com.example.distancecalculator.service.DistanceCalculationService;
 import com.example.distancecalculator.service.JSONTransformerService;
 import com.example.distancecalculator.util.FileReaderUtil;
-import com.example.distancecalculator.util.FileWriterUtil;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -19,16 +18,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DistanceCalculatorApplication implements CommandLineRunner {
 
   private FileReaderUtil fileReaderUtil;
-  private FileWriterUtil fileWriterUtil;
   private JSONTransformerService jsonTransformerService;
   private DistanceCalculationService distanceCalculationService;
 
   @Autowired
-  public DistanceCalculatorApplication(FileReaderUtil fileReaderUtil, FileWriterUtil fileWriterUtil,
+  public DistanceCalculatorApplication(FileReaderUtil fileReaderUtil,
       JSONTransformerService jsonTransformerService,
       DistanceCalculationService distanceCalculationService) {
     this.fileReaderUtil = fileReaderUtil;
-    this.fileWriterUtil = fileWriterUtil;
     this.jsonTransformerService = jsonTransformerService;
     this.distanceCalculationService = distanceCalculationService;
   }
@@ -50,7 +47,7 @@ public class DistanceCalculatorApplication implements CommandLineRunner {
           .filter(c -> distanceCalculationService
               .isWithinDistanceLimit(c.getLatitude(), c.getLongitude()))
           .sorted(Comparator.comparing(Customer::getId))
-          .forEach(c -> System.out.println("Id:" + c.getId() + ", Name: " + c.getName()));
+          .forEach(c -> System.out.println("Id: " + c.getId() + ", Name: " + c.getName()));
     }
   }
 
